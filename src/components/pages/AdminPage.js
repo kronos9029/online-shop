@@ -1,11 +1,12 @@
-import './App.css';
 import { BrowserRouter as Router, Switch, Route } from 'react-router-dom';
-import AdminPage from './components/pages/AdminPage';
+import ProductList from '../../admin/ProductList';
+import Navbar from '../Navbar';
 
-function App() {
+function AdminPage() {
   return (
     <>
-    <AdminPage/>
+    <Navbar/>
+    <ProductList/>
       <Router>
         <Switch>
           {/* <Route path='/' exact component={Home} />
@@ -20,4 +21,4 @@ function App() {
   );
 }
 
-export default App;
+export default AdminPage;

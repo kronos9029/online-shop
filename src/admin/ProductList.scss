@@ -5,7 +5,6 @@ $imageSmall: 60px;
 $padding: 10px;
 
 body {
-   background-color: lighten($baseColor, 30%);
    * { box-sizing: border-box; }
 }
 
@@ -18,7 +17,7 @@ body {
    text-transform: uppercase;
 }
 
-img {
+img.adminImg {
    border-radius: 50%;
    height: $imageSmall;
    width: $imageSmall;
@@ -120,7 +119,7 @@ table {
       text-shadow: 2px 2px 0 rgba(0,0,0,0.1);
    }
    
-   img {
+   img.adminImg {
       border: 3px solid;
       border-color: lighten($baseColor, 50%);
       height: $imageBig;

@@ -101,7 +101,7 @@ class ProductList extends PureComponent {
                     {
                         this.state.tableData.map((item) => (
                             <tr key={item.productId}>
-                                <td><img src={item.image} alt="product"></img></td>
+                                <td><img className="adminImg" src={item.image} alt="product"></img></td>
                                 <td>{item.productName}</td>
                                 <td>{item.productPrice.toLocaleString('en-US', { style: 'currency', currency: 'USD' })}</td>
                                 <td>{item.quantity}</td>

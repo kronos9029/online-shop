@@ -7,9 +7,9 @@ export default function CustomerNav() {
             <section className="nav-body" >
                 <nav>
                     <ul className="menuItems">
-                        <div class="dropdown">
+                        <div className="dropdown">
                             <li className="dropbtn"><a href='/#' data-item='Create'>Create</a></li>
-                            <div class="dropdown-content">
+                            <div className="dropdown-content">
                                 <a href="/#">Product</a>
                                 <a href="/#">Category</a>
                             </div>

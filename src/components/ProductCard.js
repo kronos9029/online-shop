@@ -1,75 +1,133 @@
-import React from 'react'
+import React, { PureComponent } from 'react'
 import './ProductCard.css'
+import axios from 'axios';
+import ReactPaginate from 'react-paginate';
 
-export default function ProductCard() {
-    return (
-        <>  
-        <button>
-        <div className="container page-wrapper">
-            <div className="page-inner">
-                <div className="row">
-                    <div className="el-wrapper">
-                        <div className="box-up">
-                            <img className="img" src="http://code.slicecrowd.com/labs/4/images/t-shirt.png" alt="" />
-                            <div className="img-info">
-                                <div className="info-inner">
-                                    <span className="p-name">I feel like Pablo</span>
-                                    <span className="p-company">Yeezy</span>
-                                </div>
-                                <div className="a-size">Available sizes : <span className="size">S , M , L , XL</span></div>
-                            </div>
-                        </div>
+export class ProductCard extends PureComponent {
 
-                        <div className="box-down">
-                            <div className="h-bg">
-                                <div className="h-bg-inner"></div>
-                            </div>
+    constructor(props) {
+        super(props)
 
-                            <a className="cart" href="/#">
-                                <span className="price">$120</span>
-                                <span className="add-to-cart">
-                                    <span className="txt">Add in cart</span>
-                                </span>
-                            </a>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-        </button>
-                <button>
-                <div className="container page-wrapper">
-                    <div className="page-inner">
-                        <div className="row">
-                            <div className="el-wrapper">
-                                <div className="box-up">
-                                    <img className="img" src="http://code.slicecrowd.com/labs/4/images/t-shirt.png" alt="" />
-                                    <div className="img-info">
-                                        <div className="info-inner">
-                                            <span className="p-name">I feel like Pablo</span>
-                                            <span className="p-company">Yeezy</span>
+        this.state = {
+            offset: 0,
+            tableData: [],
+            orgtableData: [],
+            perPage: 3,
+            currentPage: 0
+            // modelIns: false
+
+        }
+
+
+        this.handlePageClick = this.handlePageClick.bind(this);
+
+    }
+    modelIns = () => {
+        this.setState({ modelIns: !this.state.modelIns });
+
+    }
+
+    handlePageClick = (e) => {
+        const selectedPage = e.selected;
+        const offset = selectedPage * this.state.perPage;
+
+        this.setState({
+            currentPage: selectedPage,
+            offset: offset
+        }, () => {
+            this.loadMoreData()
+        });
+
+    };
+
+    loadMoreData() {
+        const data = this.state.orgtableData;
+
+        const slice = data.slice(this.state.offset, this.state.offset + this.state.perPage)
+        this.setState({
+            pageCount: Math.ceil(data.length / this.state.perPage),
+            tableData: slice
+        })
+
+    }
+
+    componentDidMount() {
+        this.getData();
+    }
+    getData() {
+        // localStorage.getItem("auth")
+        axios
+            .get('http://localhost:8080/products')
+            .then(res => {
+                var tdata = res.data;
+                console.log('data-->' + JSON.stringify(tdata))
+                var slice = tdata.slice(this.state.offset,
+                    this.state.offset + this.state.perPage)
+                this.setState({
+                    pageCount: Math.ceil(tdata.length / this.state.perPage),
+                    orgtableData: tdata,
+                    tableData: slice
+                })
+            });
+    }
+
+    render() {
+        return (
+            <>
+                {
+                    this.state.tableData.map((item) =>(
+                        <button className="cardBtn" key={item.productId}>
+                        <div className="container page-wrapper">
+                            <div className="page-inner">
+                                <div className="row">
+                                    <div className="el-wrapper">
+                                        <div className="box-up">
+                                            <img className="img" src={item.image} alt="product" />
+                                            <div className="img-info">
+                                                <div className="info-inner">
+                                                    <span className="p-name">{item.productName}</span>
+                                                    <span className="p-company">{item.categoryName}</span>
+                                                </div>
+                                            </div>
                                         </div>
-                                        <div className="a-size">Available sizes : <span className="size">S , M , L , XL</span></div>
+
+                                        <div className="box-down">
+                                            <div className="h-bg">
+                                            </div>
+
+                                            <a className="cart" href="/#">
+                                                <span className="price">{item.productPrice.toLocaleString('en-US', { style: 'currency', currency: 'USD' })}</span>
+                                                <span className="add-to-cart">
+                                                    <span className="txt">Add in cart</span>
+                                                </span>
+                                            </a>
+                                        </div>
                                     </div>
-                                </div>
-        
-                                <div className="box-down">
-                                    <div className="h-bg">
-                                        <div className="h-bg-inner"></div>
-                                    </div>
-        
-                                    <a className="cart" href="/#">
-                                        <span className="price">$120</span>
-                                        <span className="add-to-cart">
-                                            <span className="txt">Add in cart</span>
-                                        </span>
-                                    </a>
                                 </div>
                             </div>
                         </div>
-                    </div>
+                    </button>
+                    ))
+                }
+
+                <div className="paging">
+                    <ReactPaginate
+                        previousLabel={"prev"}
+                        nextLabel={"next"}
+                        breakLabel={"..."}
+                        breakClassName={"break-me"}
+                        pageCount={this.state.pageCount}
+                        marginPagesDisplayed={2}
+                        pageRangeDisplayed={5}
+                        onPageChange={this.handlePageClick}
+                        containerClassName={"paginationCard"}
+                        subContainerClassName={"pages pagination"}
+                        activeClassName={"active"} />
                 </div>
-                </button>
-                </>
-    )
+            </>
+        )
+    }
 }
+
+export default ProductCard
+

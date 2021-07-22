@@ -2,7 +2,7 @@ import React, { PureComponent } from 'react'
 import axios from 'axios';
 import ReactPaginate from 'react-paginate';
 import moment from 'moment';
-import { BrowserRouter as Router, Switch, Route, Link } from 'react-router-dom';
+import { BrowserRouter as Router, Link } from 'react-router-dom';
 import './ProductList.scss';
 import editPic from '../assets/edit.png';
 import deletePic from '../assets/delete.png';

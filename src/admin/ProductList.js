@@ -7,11 +7,6 @@ import './ProductList.scss';
 import editPic from '../assets/edit.png';
 import deletePic from '../assets/delete.png';
 
-// import "bootstrap/dist/css/bootstrap.min.css";
-// import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-// import { faEdit, faTrashAlt } from '@fortawesome/free-solid-svg-icons';
-// import { Modal, ModalBody, ModalFooter, ModalHeader } from 'reactstrap';
-
 class ProductList extends PureComponent {
 
     constructor(props) {
@@ -83,6 +78,7 @@ class ProductList extends PureComponent {
 
     render() {
         return (
+            <>
             <div class="table-users">
                 <div class="header">Products</div>
 
@@ -121,7 +117,7 @@ class ProductList extends PureComponent {
                         ))
                     }
                 </table>
-
+                </div>
                 <div>
                     <ReactPaginate
                         previousLabel={"prev"}
@@ -137,7 +133,7 @@ class ProductList extends PureComponent {
                         activeClassName={"active"} />
                 </div>
 
-            </div>
+            </>
         )
 
     }

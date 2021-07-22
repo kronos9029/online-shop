@@ -1,7 +1,7 @@
 import './App.css';
 import { BrowserRouter as Router, Switch} from 'react-router-dom';
 import CustomerPage from './components/pages/CustomerPage';
-// import AdminPage from './components/pages/AdminPage';
+import AdminPage from './components/pages/AdminPage';
 
 
 function App() {

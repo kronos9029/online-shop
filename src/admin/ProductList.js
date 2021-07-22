@@ -110,9 +110,9 @@ class ProductList extends PureComponent {
                                 <td>{item.productDescription}</td>
                                 <td>
                                     <Router>
-                                        <img class="icon" src={editPic} alt="edit"></img>
+                                        <img className="icon" src={editPic} alt="edit"></img>
                                         <Link to={`/create/${item.productId}`}>
-                                            <img  class="icon" src={deletePic} alt="delete"></img>
+                                            <img  className="icon" src={deletePic} alt="delete"></img>
                                         </Link>
                                     </Router>
 
@@ -122,7 +122,7 @@ class ProductList extends PureComponent {
                     }
                 </table>
 
-                <div className="commentBox">
+                <div>
                     <ReactPaginate
                         previousLabel={"prev"}
                         nextLabel={"next"}

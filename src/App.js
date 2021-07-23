@@ -9,18 +9,11 @@ import Login from './components/pages/Login';
 function App() {
   return (
     <>
-    {/* <AdminPage/> */}
-    {/* <CustomerPage/> */}
-    <Login/>
       <Router>
-      {/* <CreateCategories/> */}
         <Switch>
-          <Route path='/' exact component={CustomerPage} />
-          {/* <Route path='/products/' component={AdminProductList} />
-          <Route path='/login' component={LogIn} />
-          <Route path='/signup' component={SignUp} />
-          <Route path='/create' component={AdminCreateProduct} />
-          <Route path='/cart' component={Cart} /> */}
+          <Route path='/' exact component={CustomerPage}/>
+          <Route path='/Admin' exact component={AdminPage}/>
+          <Route path='/login' exact component={Login}/>
         </Switch>
       </Router>
     </>

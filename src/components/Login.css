@@ -137,7 +137,7 @@ input.fadeIn.second[type=text] {
   border-radius: 5px 5px 5px 5px;
 }
 
-input.fadeIn.third[type=text] {
+input.fadeIn.third[type=password] {
     background-color: #f6f6f6;
     border: none;
     color: #0d0d0d;
@@ -163,7 +163,7 @@ input.fadeIn.second[type=text]:focus {
   border-bottom: 2px solid #5fbae9;
 }
 
-input.fadeIn.third[type=text]:focus {
+input.fadeIn.third[type=password]:focus {
     background-color: #fff;
     border-bottom: 2px solid #5fbae9;
   }
@@ -172,7 +172,7 @@ input.fadeIn.second[type=text]:placeholder {
   color: #cccccc;
 }
 
-input.fadeIn.third[type=text]:placeholder {
+input.fadeIn.third[type=password]:placeholder {
     color: #cccccc;
   }
 

@@ -32,10 +32,14 @@ export default function CustomerNav() {
                 <nav>
                     <ul className="menuItems">
                         <div className="dropdown">
-                            <li className="dropbtn"><a href='/#' data-item='Create'>Create</a></li>
+                            <li className="dropbtn"><a data-item='Create'>Create</a></li>
                             <div className="dropdown-content">
-                                <a href="/#">Product</a>
-                                <a href="/#">Category</a>
+                                <Link to='/createProduct'>
+                                    <a>Product</a>
+                                </Link>
+                                <Link to='/createCate'>
+                                    <a>Category</a>
+                                </Link>
                             </div>
                         </div>
                         <li><a href='/#' data-item='Projects'>Projects</a></li>

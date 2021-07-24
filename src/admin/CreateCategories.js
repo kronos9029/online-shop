@@ -57,7 +57,7 @@ export default class CreateCategories extends Component {
                 <div className="row input-container">
                     <div className="col-xs-12">
                         <div className="styled-input wide">
-                            <input className="cateName" name="cateName" defaultValue={this.state.cateName} type="text" onChange={this.onChangeName} required />
+                            <input className="cateName" name="cateName" defaultValue={this.state.cateName} type="text" onChange={this.onChangeName} required/>
                             <label>Category Name</label>
                         </div>
                     </div>

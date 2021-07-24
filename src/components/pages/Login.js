@@ -50,7 +50,9 @@ export default function Login() {
                     <input type="text" id="login" className="fadeIn second" name="username" placeholder="username" onChange={(e) => setUsername(e.target.value)} />
                     <input type="password" id="password" className="fadeIn third" name="password" placeholder="password" onChange={(e) => setPassword(e.target.value)} />
                     <input type="submit" onClick={(e) => { handleSubmit(e) }} className="fadeIn fourth" value="Log In" />
-                    <input type="submit" className="fadeIn fourth" value="Register" />
+                    <Link to="/register">
+                        <input type="submit" className="fadeIn fourth" value="Register" />
+                    </Link>
                 </form>
             </div>
         </div>

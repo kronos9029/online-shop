@@ -51,8 +51,13 @@ class ProductList extends PureComponent {
     }
 
     getData() {
+        const headers = {
+            'Content-Type': 'application/json',
+            'Authorization': localStorage.getItem('auth')
+      
+          };
         axios
-            .get('http://localhost:8080/products')
+            .get('http://localhost:8080/products/admin', { headers })
             .then(res => {
                 var tdata = res.data;
                 console.log('data-->' + JSON.stringify(tdata))
@@ -98,6 +103,7 @@ class ProductList extends PureComponent {
                             <th>Create Date</th>
                             <th>Update Date</th>
                             <th width="230">Product Description</th>
+                            <th>Status</th>
                             <th>Delete</th>
                             <th>Edit</th>
                         </tr>
@@ -114,6 +120,7 @@ class ProductList extends PureComponent {
                                     <td>{moment(item.createDate).format("MMMM Do YYYY")}</td>
                                     <td>{moment(item.updateDate).format("MMMM Do YYYY")}</td>
                                     <td>{item.productDescription}</td>
+                                    <td>{item.status}</td>
                                     <td>
                                         <Link  to='/Admin'>
                                             <img onClick={this.delProduct.bind(this, item)} className="icon" src={deletePic} alt="delete"></img>

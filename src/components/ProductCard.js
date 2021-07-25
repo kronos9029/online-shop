@@ -57,7 +57,7 @@ export class ProductCard extends PureComponent {
     getData() {
         // localStorage.getItem("auth")
         axios
-            .get('http://localhost:8080/products')
+            .get('http://localhost:8080/products/customer')
             .then(res => {
                 var tdata = res.data;
                 console.log('data-->' + JSON.stringify(tdata))

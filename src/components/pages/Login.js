@@ -1,7 +1,7 @@
 import React, { useState } from 'react'
 import { Link, useHistory } from "react-router-dom";
 import axios from 'axios';
-import '../Login.css'
+import '../../assets/style/Login.css'
 
 
 export default function Login() {

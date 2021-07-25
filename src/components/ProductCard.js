@@ -1,5 +1,5 @@
 import React, { PureComponent } from 'react'
-import './ProductCard.css'
+import './../assets/style/ProductCard.css'
 import axios from 'axios';
 import ReactPaginate from 'react-paginate';
 

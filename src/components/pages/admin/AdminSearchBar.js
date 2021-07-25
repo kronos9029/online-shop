@@ -1,5 +1,5 @@
 import React from 'react'
-import './AdminSearchBar.css'
+import '../../../assets/style/AdminSearchBar.css'
 
 export default function AdminSearchBar() {
     return (

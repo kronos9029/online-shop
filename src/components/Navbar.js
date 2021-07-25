@@ -1,5 +1,5 @@
 import React from 'react'
-import './CustomerNavbar.scss'
+import './../assets/style/CustomerNavbar.scss'
 import { Link, useHistory } from "react-router-dom";
 
 export default function CustomerNav() {
@@ -43,8 +43,8 @@ export default function CustomerNav() {
                                 </Link>
                             </div>
                         </div>
-                        <li><a href='/#' data-item='Projects'>Projects</a></li>
-                        <li><a href='/#' data-item='Blog'>Blog</a></li>
+                        <li><a href='/#' data-item='Products'>Products</a></li>
+                        <li><a href='/#' data-item='Categories'>Categories</a></li>
                         {check == "NOT_LOGGED_IN" ?
                             <Link to='/login'>
                                 <li><a href='/#' data-item='Login'>Login</a></li>

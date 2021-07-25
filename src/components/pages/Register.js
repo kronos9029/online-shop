@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
 import { isEmail } from "validator";
 import axios from 'axios';
-import '../../components/Register.css';
+import '../../assets/style/Register.css';
 
 const required = value => {
     if (!value) {

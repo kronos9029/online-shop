@@ -3,9 +3,9 @@ import axios from 'axios';
 import ReactPaginate from 'react-paginate';
 import moment from 'moment';
 import { Link } from 'react-router-dom';
-import './ProductList.scss';
-import editPic from '../assets/edit.png';
-import deletePic from '../assets/delete.png';
+import '../../../assets/style/ProductList.scss'
+import editPic from '../../../assets/image/edit.png';
+import deletePic from '../../../assets/image/delete.png';
 
 class ProductList extends PureComponent {
 

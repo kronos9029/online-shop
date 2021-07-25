@@ -1,5 +1,5 @@
 import React from 'react'
-import './CustomerNavbar.scss'
+import './../assets/style/CustomerNavbar.scss'
 import { Link, useHistory } from 'react-router-dom';
 
 export default function CustomerNav() {

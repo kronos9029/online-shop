@@ -2,10 +2,10 @@ import './App.css';
 import { BrowserRouter as Router, Switch, Route } from 'react-router-dom';
 import CustomerPage from './components/pages/CustomerPage';
 import AdminPage from './components/pages/AdminPage';
-import CreateCategories from './admin/CreateCategories';
+import CreateCategories from './components/pages/admin/CreateCategories';
 import Login from './components/pages/Login';
 import Register from './components/pages/Register';
-import CreateProduct from './admin/CreateProduct';
+import CreateProduct from './components/pages/admin/CreateProduct';
 import history from '../src/services/history';
 
 

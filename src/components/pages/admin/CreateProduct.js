@@ -1,8 +1,7 @@
 import React, { Component } from 'react'
-import '../components/CreateProduct.css'
+import '../../../assets/style/CreateProduct.css'
 import { Link } from "react-router-dom";
 import axios from 'axios';
-import history from '../services/history';
 
 export default class CreateProduct extends Component {
 

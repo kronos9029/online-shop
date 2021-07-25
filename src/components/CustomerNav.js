@@ -8,7 +8,7 @@ export default function CustomerNav() {
 
   const token = localStorage.getItem("auth");
   let check;
-  if(!token){
+  if (!token) {
     check = "NOT_LOGGED_IN";
   } else {
     check = "LOGGED_IN";
@@ -18,13 +18,13 @@ export default function CustomerNav() {
     event.preventDefault();
 
     try {
-        localStorage.clear();
-        sessionStorage.clear();
-        history.push("/");
+      localStorage.clear();
+      sessionStorage.clear();
+      history.push("/");
     } catch (e) {
-        alert(e.message);
+      alert(e.message);
     }
-}
+  }
 
   return (
     <div>
@@ -41,13 +41,17 @@ export default function CustomerNav() {
               </div>
             </div>
             <li><a href='/#' data-item='Projects'>Projects</a></li>
-            <li><a href='/#' data-item='Blog'>Blog</a></li>
-            {check  == "NOT_LOGGED_IN" ?
-            <Link to='/login'>
-              <li><a href='/#' data-item='Login'>Login</a></li>
-            </Link>
-            : 
-            <li><a onClick={(e) => {Logout(e)}} data-item='Logout'>Logout</a></li>
+            {
+              check === "NOT_LOGGED_IN" ? <li><a href='/#' data-item='About'>About</a></li>
+                :
+                <li><a href='/#' data-item='Profile'>Profile</a></li>
+            }
+            {check === "NOT_LOGGED_IN" ?
+              <Link to='/login'>
+                <li><a href='/#' data-item='Login'>Login</a></li>
+              </Link>
+              :
+              <li><a onClick={(e) => { Logout(e) }} data-item='Logout'>Logout</a></li>
             }
           </ul>
         </nav>

@@ -45,7 +45,13 @@ export default function CustomerNav() {
                         </div>
                         <li><a href='/#' data-item='Products'>Products</a></li>
                         <li><a href='/#' data-item='Categories'>Categories</a></li>
-                        {check == "NOT_LOGGED_IN" ?
+                         {
+                            check === "NOT_LOGGED_IN" ? null
+                            :
+                            <li><a href='/#' data-item='Profile'>Profile</a></li>
+                        }                       
+                        {
+                            check === "NOT_LOGGED_IN" ?
                             <Link to='/login'>
                                 <li><a href='/#' data-item='Login'>Login</a></li>
                             </Link>

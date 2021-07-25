@@ -98,7 +98,8 @@ class ProductList extends PureComponent {
                             <th>Create Date</th>
                             <th>Update Date</th>
                             <th width="230">Product Description</th>
-                            <th></th>
+                            <th>Delete</th>
+                            <th>Edit</th>
                         </tr>
                     </thead>
 
@@ -117,6 +118,12 @@ class ProductList extends PureComponent {
                                         <Link  to='/Admin'>
                                             <img onClick={this.delProduct.bind(this, item)} className="icon" src={deletePic} alt="delete"></img>
                                         </Link>
+                                    </td>
+
+                                    <td>
+                                    <Link to={"/updateProduct/" + item.productId}>
+                                        <img className="icon" src={editPic} alt="edit"></img>
+                                    </Link>
                                     </td>
                                 </tr>
                             ))

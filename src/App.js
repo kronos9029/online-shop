@@ -7,6 +7,7 @@ import Login from './components/pages/Login';
 import Register from './components/pages/Register';
 import CreateProduct from './components/pages/admin/CreateProduct';
 import history from '../src/services/history';
+import UpdateProduct from './components/pages/admin/UpdateProduct';
 
 
 function App() {
@@ -20,6 +21,7 @@ function App() {
           <Route path='/createCate' exact component={CreateCategories} />
           <Route path='/register' exact component={Register} />
           <Route path='/createProduct' exact component={CreateProduct} />
+          <Route path='/updateProduct/:id' exact component={UpdateProduct} />
         </Switch>
       </Router>
     </>

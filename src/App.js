@@ -6,12 +6,13 @@ import CreateCategories from './admin/CreateCategories';
 import Login from './components/pages/Login';
 import Register from './components/pages/Register';
 import CreateProduct from './admin/CreateProduct';
+import history from '../src/services/history';
 
 
 function App() {
   return (
     <>
-      <Router>
+      <Router history={history}>
         <Switch>
           <Route path='/' exact component={CustomerPage} />
           <Route path='/Admin' exact component={AdminPage} />

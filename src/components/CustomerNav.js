@@ -30,7 +30,7 @@ export default function CustomerNav() {
     <div>
       <p className="nav-bar" data-item=''>Online Shop</p>
       <section>
-        <nav  className="nav-body">
+        <nav className="nav-body">
           <ul className="menuItems">
             <li><a href='/#' data-item='Home'>Home</a></li>
             <div className="dropdown">

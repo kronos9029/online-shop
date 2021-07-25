@@ -2,7 +2,7 @@ import React, { PureComponent } from 'react'
 import axios from 'axios';
 import ReactPaginate from 'react-paginate';
 import moment from 'moment';
-import { BrowserRouter as Router, Link } from 'react-router-dom';
+import { Link } from 'react-router-dom';
 import './ProductList.scss';
 import editPic from '../assets/edit.png';
 import deletePic from '../assets/delete.png';
@@ -18,13 +18,9 @@ class ProductList extends PureComponent {
             orgtableData: [],
             perPage: 3,
             currentPage: 0
-            // modelIns: false
-
         }
-
-
+        this.getData();
         this.handlePageClick = this.handlePageClick.bind(this);
-
     }
     modelIns = () => {
         this.setState({ modelIns: !this.state.modelIns });
@@ -52,14 +48,9 @@ class ProductList extends PureComponent {
             pageCount: Math.ceil(data.length / this.state.perPage),
             tableData: slice
         })
-
     }
 
-    componentDidMount() {
-        this.getData();
-    }
     getData() {
-        // localStorage.getItem("auth")
         axios
             .get('http://localhost:8080/products')
             .then(res => {
@@ -75,48 +66,63 @@ class ProductList extends PureComponent {
             });
     }
 
+    delProduct(item) {
+        const headers = {
+          'Content-Type': 'application/json',
+          'Authorization': localStorage.getItem('auth')
+    
+        };
+        axios.delete(`http://localhost:8080/products/${item.productId}`, { headers })
+          .then(() => {
+            this.getData();
+          }).catch(err => {
+            console.log(err);
+          })
+    
+      }
+
 
     render() {
         return (
             <>
-            <div class="table-users">
-                <div class="header">Products</div>
+                <div className="table-users">
+                    <div className="header">Products</div>
 
-                <table cellspacing="0">
-                    <tr>
-                        <th>Picture</th>
-                        <th>Product Name</th>
-                        <th>Price</th>
-                        <th>Quantity</th>
-                        <th>Create Date</th>
-                        <th>Update Date</th>
-                        <th width="230">Product Description</th>
-                        <th></th>
-                    </tr>
+                    <table cellSpacing="0">
+                    <thead>
+                        <tr>
+                            <th>Picture</th>
+                            <th>Product Name</th>
+                            <th>Price</th>
+                            <th>Quantity</th>
+                            <th>Create Date</th>
+                            <th>Update Date</th>
+                            <th width="230">Product Description</th>
+                            <th></th>
+                        </tr>
+                    </thead>
 
-                    {
-                        this.state.tableData.map((item) => (
-                            <tr key={item.productId}>
-                                <td><img className="adminImg" src={item.image} alt="product"></img></td>
-                                <td>{item.productName}</td>
-                                <td>{item.productPrice.toLocaleString('en-US', { style: 'currency', currency: 'USD' })}</td>
-                                <td>{item.quantity}</td>
-                                <td>{moment(item.createDate).format("MMMM Do YYYY")}</td>
-                                <td>{moment(item.updateDate).format("MMMM Do YYYY")}</td>
-                                <td>{item.productDescription}</td>
-                                <td>
-                                    <Router>
-                                        <img className="icon" src={editPic} alt="edit"></img>
-                                        <Link to={`/create/${item.productId}`}>
-                                            <img  className="icon" src={deletePic} alt="delete"></img>
+                    <tbody>
+                        {
+                            this.state.tableData.map((item) => (
+                                <tr key={item.productId}>
+                                    <td><img className="adminImg" src={item.image} alt="product"></img></td>
+                                    <td>{item.productName}</td>
+                                    <td>{item.productPrice.toLocaleString('en-US', { style: 'currency', currency: 'USD' })}</td>
+                                    <td>{item.quantity}</td>
+                                    <td>{moment(item.createDate).format("MMMM Do YYYY")}</td>
+                                    <td>{moment(item.updateDate).format("MMMM Do YYYY")}</td>
+                                    <td>{item.productDescription}</td>
+                                    <td>
+                                        <Link  to='/Admin'>
+                                            <img onClick={this.delProduct.bind(this, item)} className="icon" src={deletePic} alt="delete"></img>
                                         </Link>
-                                    </Router>
-
-                                </td>
-                            </tr>
-                        ))
-                    }
-                </table>
+                                    </td>
+                                </tr>
+                            ))
+                        }
+                    </tbody>
+                    </table>
                 </div>
                 <div>
                     <ReactPaginate
@@ -138,6 +144,5 @@ class ProductList extends PureComponent {
 
     }
 }
-
 
 export default ProductList;

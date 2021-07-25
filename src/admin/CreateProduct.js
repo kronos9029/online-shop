@@ -1,7 +1,8 @@
 import React, { Component } from 'react'
 import '../components/CreateProduct.css'
-import { Link} from "react-router-dom";
+import { Link } from "react-router-dom";
 import axios from 'axios';
+import history from '../services/history';
 
 export default class CreateProduct extends Component {
 
@@ -73,9 +74,8 @@ export default class CreateProduct extends Component {
             })
     }
 
-
-
-    async createProduct() {
+    async createProduct(event) {
+        event.preventDefault();
         var product = {
             productName: this.state.productName,
             productDescription: this.state.productDescription,
@@ -93,7 +93,11 @@ export default class CreateProduct extends Component {
         };
         await axios.post(`http://localhost:8080/products?cateId=${this.state.cateId}`, product,
             { headers }
-        )
+        ).then(() => {
+            this.props.history.push('/Admin')
+        }).catch((error) => {
+            console.log(error)
+        })
     }
 
     render() {
@@ -141,9 +145,7 @@ export default class CreateProduct extends Component {
                         <input type="submit" value="Check Image" id="form_Check" />
                     </div>
                     <div className="submit">
-                        <Link to="/Admin">
-                            <input type="submit" onClick={this.createProduct} value="Create Product" id="form_button" />
-                        </Link>
+                        <input type="submit" onClick={(e) => {this.createProduct(e)}} value="Create Product" id="form_button" />
                     </div>
                 </form>
             </div >

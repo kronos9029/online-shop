@@ -8,7 +8,6 @@ export default function AdminSearchBar() {
     const [searchValue, setSearchValue] = useState("");
     const history = useHistory();
     function handleSubmit(event) {
-        event.preventDefault();
         try {
             sessionStorage.setItem('searchValue', searchValue);
             history.push("/Admin/result");

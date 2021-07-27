@@ -86,7 +86,6 @@ export default class ResultList extends Component {
       }
 
       handleClickUpdateProduct(event, productId) {
-        event.preventDefault();
         try {
             this.props.history.push("/updateProduct/" + productId);
             window.location.reload(false);

@@ -85,7 +85,7 @@ export default class CategoryList extends Component {
   handleClickUpdateCate(event, cateId) {
     event.preventDefault();
     try {
-      this.props.history.push("/updateCate/" + cateId);
+      this.props.history.push("/Admin/updateCate/" + cateId);
       window.location.reload(false);
     } catch (error) {
       alert(error.message);

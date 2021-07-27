@@ -100,46 +100,6 @@ export default class CreateProduct extends Component {
 
     render() {
         return (
-            // <div id="container">
-            //     <div className="underline">
-            //     </div>
-            //     <div className="icon_wrapper">
-            //     </div>
-            //     <form action="#" method="post" id="contact_form">
-            //         <div className="name">
-            //             <label for="name"></label>
-            //             <input className="name_input" type="text" placeholder="Product Name" name="productName" id="name_input" value={this.state.productName} onChange={this.onChangeproductName} required />
-            //         </div>
-            //         <div className="email">
-            //             <label for="quantity">Quantity</label>
-            //             <input className="email_input" type="number" min="0" placeholder="Quantity" name="quantity" id="email_input" value={this.state.quantity} onChange={this.onChangeQuantity} required />
-            //         </div>
-            //         <div className="telephone">
-            //             <label for="name"></label>
-            //             <input className="telephone_input" type="text" placeholder="Price" name="telephone" id="telephone_input" name="productPrice" value={this.state.productPrice} onChange={this.onChangeproductPrice} required />
-            //         </div>
-            //         <div className="subject">
-            //             <label for="subject"></label>
-
-            //         </div>
-            //         <div className="telephone">
-            //             <label for="name"></label>
-            //             <input className="telephone_input" type="text" placeholder="Product Description" name="productDescription" id="telephone_input"
-            //                 value={this.state.productDescription}
-            //                 onChange={this.onChangeproductDescription} required />
-            //         </div>
-            //         <div className="message">
-            //             <label for="message"></label>
-            //             <textarea name="message" placeholder="Image Link" className="message_input" id="message_input" name="image" cols="30" rows="5" value={this.state.image} onChange={this.onChangeImage} required></textarea>
-            //         </div>
-            //         <div className="submit">
-            //             <input type="submit" value="Check Image" id="form_Check" />
-            //         </div>
-            //         <div className="submit">
-            //             <input type="submit" onClick={(e) => {this.createProduct(e)}} value="Create Product" id="form_button" />
-            //         </div>
-            //     </form>
-            // </div >
             <>
             <div className="createContainer">
                 <form action="/action_page.php">

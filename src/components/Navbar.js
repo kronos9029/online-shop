@@ -55,16 +55,12 @@ export default function CustomerNav() {
                         <div className="dropdown">
                             <li className="dropbtn"><a href="/#" data-item='Create'>Create</a></li>
                             <div className="dropdown-content">
-                                <Link to='/createProduct'>
-                                    <a href="/#">Product</a>
-                                </Link>
-                                <Link to='/createCate'>
-                                    <a href="/#">Category</a>
-                                </Link>
+                                <a href="/Admin/createProduct">Product</a>
+                                <a href="/Admin/createCate">Category</a>
                             </div>
                         </div>
-                        <li><a href='/#' onClick={(e) => {(handleClickProduct(e))}} data-item='Products'>Products</a></li>
-                        <li><a href='/#' onClick={(e) => {(handleClickCate(e))}} data-item='Categories'>Categories</a></li>   
+                        <li><a href='/Admin/adminProduct' data-item='Products'>Products</a></li>
+                        <li><a href='/Admin/adminCate' data-item='Categories'>Categories</a></li>   
                          {
                             check === "NOT_LOGGED_IN" ? null
                             :

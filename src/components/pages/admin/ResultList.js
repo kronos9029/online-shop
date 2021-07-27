@@ -87,7 +87,7 @@ export default class ResultList extends Component {
 
       handleClickUpdateProduct(event, productId) {
         try {
-            this.props.history.push("/updateProduct/" + productId);
+            this.props.history.push("/Admin/updateProduct/" + productId);
             window.location.reload(false);
         } catch (error) {
             alert(error.message);

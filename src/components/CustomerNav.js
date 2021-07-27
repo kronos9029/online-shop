@@ -16,7 +16,6 @@ export default function CustomerNav() {
 
   function Logout(event) {
     event.preventDefault();
-
     try {
       localStorage.clear();
       sessionStorage.clear();

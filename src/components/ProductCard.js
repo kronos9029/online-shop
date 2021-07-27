@@ -13,7 +13,7 @@ export class ProductCard extends PureComponent {
             tableData: [],
             orgtableData: [],
             perPage: 3,
-            currentPage: 0
+            currentPage: 0,
             // modelIns: false
 
         }
@@ -72,6 +72,11 @@ export class ProductCard extends PureComponent {
     }
 
     render() {
+        if(this.state.tableData == null){
+            return(
+                <div>NOTHING FOUNDED!!</div> 
+            )
+        }
         return (
             <>
                 {

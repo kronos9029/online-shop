@@ -171,8 +171,6 @@ export default class UpdateProduct extends Component {
                         <input type="submit" value="Check Image" />
                     </form>
                 </div>
-
-                <img className="previewProduct" src={this.state.image} alt={this.state.image} width="500" height="600" name="image" required />
             </>
         )
     }

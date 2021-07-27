@@ -88,7 +88,7 @@ class ProductList extends PureComponent {
       handleClickUpdateProduct(event, productId) {
         event.preventDefault();
         try {
-            this.props.history.push("/updateProduct/" + productId);
+            this.props.history.push("/Admin/updateProduct/" + productId);
             window.location.reload(false);
         } catch (error) {
             alert(error.message);
@@ -161,7 +161,6 @@ class ProductList extends PureComponent {
                         subContainerClassName={"pages pagination"}
                         activeClassName={"active"} />
                 </div>
-
             </>
         )
 

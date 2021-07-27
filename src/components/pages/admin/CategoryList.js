@@ -1,63 +1,56 @@
-import React, { PureComponent } from 'react'
+import React, { Component } from 'react'
 import axios from 'axios';
-import ReactPaginate from 'react-paginate';
-import moment from 'moment';
 import { Link } from 'react-router-dom';
-import '../../../assets/style/ProductList.scss'
+import ReactPaginate from 'react-paginate';
 import editPic from '../../../assets/image/edit.png';
 import deletePic from '../../../assets/image/delete.png';
 
-class ProductList extends PureComponent {
+export default class CategoryList extends Component {
 
     constructor(props) {
         super(props)
-
         this.state = {
-            offset: 0,
-            tableData: [],
-            orgtableData: [],
-            perPage: 3,
-            currentPage: 0
+          offset: 0,
+          tableData: [],
+          orgtableData: [],
+          perPage: 5,
+          currentPage: 0
         }
         this.getData();
         this.handlePageClick = this.handlePageClick.bind(this);
-    }
-    modelIns = () => {
-        this.setState({ modelIns: !this.state.modelIns });
-
-    }
-
-    handlePageClick = (e) => {
+      }
+     
+      handlePageClick = (e) => {
         const selectedPage = e.selected;
         const offset = selectedPage * this.state.perPage;
-
+    
         this.setState({
-            currentPage: selectedPage,
-            offset: offset
+          currentPage: selectedPage,
+          offset: offset
         }, () => {
-            this.loadMoreData()
+          this.loadMoreData()
         });
-
-    };
-
-    loadMoreData() {
+    
+      };
+    
+      loadMoreData() {
         const data = this.state.orgtableData;
-
+    
         const slice = data.slice(this.state.offset, this.state.offset + this.state.perPage)
         this.setState({
-            pageCount: Math.ceil(data.length / this.state.perPage),
-            tableData: slice
+          pageCount: Math.ceil(data.length / this.state.perPage),
+          tableData: slice
         })
-    }
-
-    getData() {
+    
+      }
+    
+      getData() {
         const headers = {
             'Content-Type': 'application/json',
             'Authorization': localStorage.getItem('auth')
-      
           };
         axios
-            .get('http://localhost:8080/products/admin', { headers })
+            .get('http://localhost:8080/categories', { headers })
             .then(res => {
                 var tdata = res.data;
                 console.log('data-->' + JSON.stringify(tdata))
@@ -71,25 +64,27 @@ class ProductList extends PureComponent {
             });
     }
 
-    delProduct(item) {
+    delCategory(item) {
         const headers = {
           'Content-Type': 'application/json',
           'Authorization': localStorage.getItem('auth')
     
         };
-        axios.delete(`http://localhost:8080/products/${item.productId}`, { headers })
-          .then(() => {
+    
+        axios.delete(`http://localhost:8080/categories/${item.cateId}`, { headers })
+          .then(res => {
             this.getData();
+            alert("Delete Successfully")
           }).catch(err => {
             console.log(err);
           })
     
       }
 
-      handleClickUpdateProduct(event, productId) {
+      handleClickUpdateCate(event, cateId) {
         event.preventDefault();
         try {
-            this.props.history.push("/updateProduct/" + productId);
+            this.props.history.push("/updateCate/" + cateId);
             window.location.reload(false);
         } catch (error) {
             alert(error.message);
@@ -105,14 +100,8 @@ class ProductList extends PureComponent {
                     <table cellSpacing="0">
                     <thead>
                         <tr>
-                            <th>Picture</th>
-                            <th>Product Name</th>
-                            <th>Price</th>
-                            <th>Quantity</th>
-                            <th>Create Date</th>
-                            <th>Update Date</th>
-                            <th width="230">Product Description</th>
-                            <th>Status</th>
+                            <th>Category Name</th>
+                            <th>Category Description</th>
                             <th>Delete</th>
                             <th>Edit</th>
                         </tr>
@@ -121,27 +110,16 @@ class ProductList extends PureComponent {
                     <tbody>
                         {
                             this.state.tableData.map((item) => (
-                                <tr key={item.productId}>
-                                    <td><img className="adminImg" src={item.image} alt="product"></img></td>
-                                    <td>{item.productName}</td>
-                                    <td>{item.productPrice.toLocaleString('en-US', { style: 'currency', currency: 'USD' })}</td>
-                                    <td>{item.quantity}</td>
-                                    <td>{moment(item.createDate).format("MMMM Do YYYY")}</td>
-                                    <td>{moment(item.updateDate).format("MMMM Do YYYY")}</td>
-                                    <td>{item.productDescription}</td>
-                                    <td>{item.status}</td>
+                                <tr key={item.cateId}>
+                                    <td>{item.cateName}</td>
+                                    <td>{item.cateDescription}</td>
                                     <td>
-                                        {
-                                            item.status === "INACTIVE" 
-                                            ? null :
-                                            <Link  to='/Admin/adminProduct'>
-                                                <img onClick={this.delProduct.bind(this, item)} className="icon" src={deletePic} alt="delete"></img>
-                                            </Link>
-                                        }
+                                        <Link  to='/Admin/adminCate'>
+                                            <img onClick={this.delCategory.bind(this, item)} className="icon" src={deletePic} alt="delete"></img>
+                                        </Link>
                                     </td>
-
                                     <td>
-                                        <img onClick={(e) => {(this.handleClickUpdateProduct(e, item.productId))}} className="icon" src={editPic} alt="edit"></img>
+                                        <img onClick={(e) => {(this.handleClickUpdateCate(e, item.cateId))}} className="icon" src={editPic} alt="edit"></img>
                                     </td>
                                 </tr>
                             ))
@@ -166,8 +144,5 @@ class ProductList extends PureComponent {
 
             </>
         )
-
     }
 }
-
-export default ProductList;

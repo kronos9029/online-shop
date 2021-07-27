@@ -19,14 +19,14 @@ export default class CreateCategories extends Component {
 
     onChangeDescription(e) {
         this.setState({
-            categoryDescription: e.target.value
+            cateDescription: e.target.value
         });
     }
 
     
     onChangeName(e) {
         this.setState({
-            categoryName: e.target.value
+            cateName: e.target.value
         });
     }
 
@@ -42,6 +42,10 @@ export default class CreateCategories extends Component {
 
         axios.post('http://localhost:8080/categories', category, {
             headers
+        }).then(() => {
+            this.props.history.push('/Admin/adminCate')
+        }).catch((error) => {
+            console.log(error)
         })
 
     }
@@ -67,11 +71,9 @@ export default class CreateCategories extends Component {
                             <label>Category Description</label>
                         </div>
                     </div>
-                    <Link to={"/categories"}>
                     <div className="col-xs-12">
                         <div onClick={this.createCategory} className="btn-lrg submit-btn">Create</div>
                     </div>
-                    </Link>
                 </div>
             </div>
         )

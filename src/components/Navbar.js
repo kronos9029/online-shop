@@ -26,6 +26,26 @@ export default function CustomerNav() {
         }
     }
 
+    function handleClickProduct(event) {
+        event.preventDefault();
+        try {
+            history.push("/Admin/adminProduct");
+            window.location.reload(false);
+        } catch (error) {
+            alert(error.message);
+        }
+    }
+
+    function handleClickCate(event) {
+        event.preventDefault();
+        try {
+            history.push("/Admin/adminCate");
+            window.location.reload(false);
+        } catch (error) {
+            alert(error.message);
+        }
+    }
+
     return (
         <div>
             <p className="nav-bar" data-item=''>Admin  page</p>
@@ -33,18 +53,18 @@ export default function CustomerNav() {
                 <nav>
                     <ul className="menuItems">
                         <div className="dropdown">
-                            <li className="dropbtn"><a data-item='Create'>Create</a></li>
+                            <li className="dropbtn"><a href="/#" data-item='Create'>Create</a></li>
                             <div className="dropdown-content">
                                 <Link to='/createProduct'>
-                                    <a>Product</a>
+                                    <a href="/#">Product</a>
                                 </Link>
                                 <Link to='/createCate'>
-                                    <a>Category</a>
+                                    <a href="/#">Category</a>
                                 </Link>
                             </div>
                         </div>
-                        <li><a href='/#' data-item='Products'>Products</a></li>
-                        <li><a href='/#' data-item='Categories'>Categories</a></li>
+                        <li><a href='/#' onClick={(e) => {(handleClickProduct(e))}} data-item='Products'>Products</a></li>
+                        <li><a href='/#' onClick={(e) => {(handleClickCate(e))}} data-item='Categories'>Categories</a></li>   
                          {
                             check === "NOT_LOGGED_IN" ? null
                             :

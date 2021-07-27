@@ -2,6 +2,7 @@ import React, { PureComponent } from 'react'
 import './../assets/style/ProductCard.css'
 import axios from 'axios';
 import ReactPaginate from 'react-paginate';
+import { Link } from 'react-router-dom';
 
 export class ProductCard extends PureComponent {
 

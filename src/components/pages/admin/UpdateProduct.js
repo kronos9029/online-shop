@@ -1,8 +1,7 @@
 import React, { Component } from 'react'
-import PropTypes from 'prop-types'
 import axios from 'axios';
+import { Fragment } from 'react';
 import '../../../assets/style/UpdateProduct.css'
-import { Link } from 'react-router-dom';
 
 export default class UpdateProduct extends Component {
     constructor(props) {
@@ -12,6 +11,7 @@ export default class UpdateProduct extends Component {
         this.onChangeproductPrice = this.onChangeproductPrice.bind(this);
         this.onChangeImage = this.onChangeImage.bind(this);
         this.onChangeQuantity = this.onChangeQuantity.bind(this);
+        this.onChangeStatus = this.onChangeStatus.bind(this);
         this.onChangecateId = this.onChangecateId.bind(this);
         this.updateProduct = this.updateProduct.bind(this);
         this.state = {
@@ -21,13 +21,13 @@ export default class UpdateProduct extends Component {
             productPrice: '',
             image: '',
             quantity: '',
+            status:'',
             categoryDetail: {
                 cateId: '',
                 cateName: '',
                 cateDescription: '',
             },
             productId: null,
-
         }
         this.getCategories();
     }
@@ -44,6 +44,12 @@ export default class UpdateProduct extends Component {
             })
     }
 
+    getRole(){
+        this.setState({
+
+        });
+    }
+
     getproduct(productId) {
         axios
             .get(`http://localhost:8080/products/${productId}`)
@@ -55,13 +61,12 @@ export default class UpdateProduct extends Component {
                     productPrice: res.data.productPrice,
                     image: res.data.image,
                     quantity: res.data.quantity,
+                    statusDetail:res.data.status,
                     categoryDetail: {
                         cateId: res.data.category.cateId,
                         cateName: res.data.category.cateName,
                         cateDescription: res.data.category.cateDescription,
-
                     }
-
                 })
             });
     }
@@ -75,6 +80,7 @@ export default class UpdateProduct extends Component {
             productPrice: this.state.productPrice,
             image: this.state.image,
             quantity: this.state.quantity,
+            status: this.state.status,
             category: {
                 cateId: this.state.categoryDetail.cateId,
                 cateName: this.state.categoryDetail.cateName,
@@ -86,10 +92,9 @@ export default class UpdateProduct extends Component {
             'Authorization': localStorage.getItem('auth')
         };
         axios.put(`http://localhost:8080/products/${this.state.productId}`,
-            data, { headers }).
-            then(response => {
+            data, { headers }).then(response => {
                 console.log(response.data);
-                this.props.history.push('/Admin');
+                this.props.history.push('/Admin/adminProduct');
             })
             .catch(e => {
                 console.log(e);
@@ -130,20 +135,24 @@ export default class UpdateProduct extends Component {
             quantity: e.target.value
         });
     }
+    onChangeStatus(e) {
+        this.setState({
+            status: e.target.value
+        });
+    }
     render() {
         return (
             <>
                 <div className="updateContainer">
                     <form action="/action_page.php">
                         <label for="fname">Product Name</label>
-                        <input type="text" id="fname" name="productName" placeholder="Product Name" value={this.state.productName} onChange={this.onChangeproductName} required />
+                        <input className="pname" type="text" id="fname" name="productName" placeholder="Product Name" value={this.state.productName} onChange={this.onChangeproductName} required />
                         <label for="lname">Product Quantity</label>
-                        <input type="text" id="lname" name="quantity" placeholder="Product Quantity" value={this.state.quantity} onChange={this.onChangeQuantity} required />
+                        <input className="pquant" type="text" id="lname" name="quantity" placeholder="Product Quantity" value={this.state.quantity} onChange={this.onChangeQuantity} required />
                         <label for="lname">Product Price</label>
-                        <input type="text" id="lname" name="price" placeholder="Product Price" value={this.state.productPrice} onChange={this.onChangeproductPrice} required />
+                        <input className="price" type="text" id="lname" name="price" placeholder="Product Price" value={this.state.productPrice} onChange={this.onChangeproductPrice} required />
                         <label for="lname">Product Description</label>
-                        <input type="text" id="lname" name="productDescription" placeholder="Product Description" value={this.state.productDescription} onChange={this.onChangeproductDescription} required />
-
+                        <input className="pdes" type="text" id="lname" name="productDescription" placeholder="Product Description" value={this.state.productDescription} onChange={this.onChangeproductDescription} required />
                         <label for="country">Categories</label>
                         <select id="country" name="category" onChange={this.onChangecateId}>
                             {
@@ -154,9 +163,7 @@ export default class UpdateProduct extends Component {
                                     </option>
                                 ))
                             }
-
                         </select>
-
                         <label for="subject">Product Image Link</label>
                         <textarea id="subject" name="subject" placeholder="Product Image Link" value={this.state.image} onChange={this.onChangeImage} required></textarea>
 

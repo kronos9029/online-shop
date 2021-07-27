@@ -42,7 +42,7 @@ export default function CustomerNav() {
             </div>
             <li><a href='/#' data-item='Projects'>Projects</a></li>
             {
-              check === "NOT_LOGGED_IN" ? <li><a href='/#' data-item='About'>About</a></li>
+              check === "NOT_LOGGED_IN" ? <li><a href='https://www.youtube.com/watch?v=dQw4w9WgXcQ&ab_channel=RickAstley' data-item='About'>About</a></li>
                 :
                 <li><a href='/#' data-item='Profile'>Profile</a></li>
             }

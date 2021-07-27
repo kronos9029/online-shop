@@ -8,6 +8,7 @@ import Register from './components/pages/Register';
 import CreateProduct from './components/pages/admin/CreateProduct';
 import history from '../src/services/history';
 import UpdateProduct from './components/pages/admin/UpdateProduct';
+import UpdateCategory from './components/pages/admin/UpdateCategory';
 
 
 function App() {
@@ -16,12 +17,13 @@ function App() {
       <Router history={history}>
         <Switch>
           <Route path='/' exact component={CustomerPage} />
-          <Route path='/Admin' exact component={AdminPage} />
+          <Route path='/Admin' component={AdminPage} />
           <Route path='/login' exact component={Login} />
           <Route path='/createCate' exact component={CreateCategories} />
           <Route path='/register' exact component={Register} />
           <Route path='/createProduct' exact component={CreateProduct} />
           <Route path='/updateProduct/:id' exact component={UpdateProduct} />
+          <Route path='/updateCate/:id' exact component={UpdateCategory} />
         </Switch>
       </Router>
     </>

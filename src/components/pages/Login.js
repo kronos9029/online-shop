@@ -49,7 +49,7 @@ export default function Login() {
                 history.push("/Admin/adminProduct");
             }
             else {
-                history.push("/");
+                history.push("/home/main");
             }
         } catch (e) {
             alert("Wrong Password Or Username!!");

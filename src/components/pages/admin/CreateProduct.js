@@ -1,6 +1,5 @@
 import React, { Component } from 'react'
 import '../../../assets/style/CreateProduct.css'
-import { Link } from "react-router-dom";
 import axios from 'axios';
 
 export default class CreateProduct extends Component {

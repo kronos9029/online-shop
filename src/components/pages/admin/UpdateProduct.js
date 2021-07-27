@@ -1,6 +1,5 @@
 import React, { Component } from 'react'
-import axios from 'axios';
-import { Fragment } from 'react';
+import axios from 'axios';                      
 import '../../../assets/style/UpdateProduct.css'
 
 export default class UpdateProduct extends Component {

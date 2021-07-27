@@ -16,8 +16,6 @@ export default function SearchBar() {
         } catch (e) {
            alert('Something went wrong')
         }
-        
-        
     }
     
     return (

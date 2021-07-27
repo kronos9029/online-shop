@@ -32,7 +32,7 @@ export default function CustomerNav() {
       <section>
         <nav className="nav-body">
           <ul className="menuItems">
-            <li><a href='/#' data-item='Home'>Home</a></li>
+            <li><a href='/home/main' data-item='Home'>Home</a></li>
             <div className="dropdown">
               <li className="dropbtn"><a href='/#' data-item='Categories'>Categories</a></li>
               <div className="dropdown-content">
@@ -51,7 +51,7 @@ export default function CustomerNav() {
                 <li><a href='/#' data-item='Login'>Login</a></li>
               </Link>
               :
-              <li><a onClick={(e) => { Logout(e) }} data-item='Logout'>Logout</a></li>
+              <li><a href="/#" onClick={(e) => { Logout(e) }} data-item='Logout'>Logout</a></li>
             }
           </ul>
         </nav>

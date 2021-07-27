@@ -54,7 +54,6 @@ class ProductList extends PureComponent {
         const headers = {
             'Content-Type': 'application/json',
             'Authorization': localStorage.getItem('auth')
-      
           };
         axios
             .get('http://localhost:8080/products/admin', { headers })
@@ -101,7 +100,6 @@ class ProductList extends PureComponent {
             <>
                 <div className="table-users">
                     <div className="header">Products</div>
-
                     <table cellSpacing="0">
                     <thead>
                         <tr>

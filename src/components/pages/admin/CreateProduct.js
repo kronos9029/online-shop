@@ -90,7 +90,7 @@ export default class CreateProduct extends Component {
             'Content-Type': 'application/json',
             'Authorization': localStorage.getItem('auth')
         };
-        await axios.post(`http://localhost:8080/products?cateId=${this.state.cateId}`, product,
+        await axios.post(`http://localhost:8080/products/create?cateId=${this.state.cateId}`, product,
             { headers }
         ).then(() => {
             this.props.history.push('/Admin/adminProduct')

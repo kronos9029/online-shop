@@ -44,12 +44,6 @@ export default class UpdateProduct extends Component {
             })
     }
 
-    getRole(){
-        this.setState({
-
-        });
-    }
-
     getproduct(productId) {
         axios
             .get(`http://localhost:8080/products/${productId}`)
@@ -61,12 +55,13 @@ export default class UpdateProduct extends Component {
                     productPrice: res.data.productPrice,
                     image: res.data.image,
                     quantity: res.data.quantity,
-                    statusDetail:res.data.status,
+                    status: res.data.status,
                     categoryDetail: {
                         cateId: res.data.category.cateId,
                         cateName: res.data.category.cateName,
                         cateDescription: res.data.category.cateDescription,
                     }
+                    
                 })
             });
     }
@@ -163,6 +158,12 @@ export default class UpdateProduct extends Component {
                                     </option>
                                 ))
                             }
+                        </select>
+                        <select  value={this.state.status}
+                            onChange={this.onChangeStatus}>
+                            <option>ACTIVE</option>
+                            <option>INACTIVE</option>
+                            ))
                         </select>
                         <label for="subject">Product Image Link</label>
                         <textarea id="subject" name="subject" placeholder="Product Image Link" value={this.state.image} onChange={this.onChangeImage} required></textarea>

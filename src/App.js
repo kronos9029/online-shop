@@ -1,5 +1,6 @@
 import './App.css';
 import { BrowserRouter as Router, Switch, Route } from 'react-router-dom';
+import { Redirect } from 'react-router';
 import CustomerPage from './components/pages/CustomerPage';
 import AdminPage from './components/pages/AdminPage';
 import CreateCategories from './components/pages/admin/CreateCategories';
@@ -16,7 +17,10 @@ function App() {
     <>
       <Router history={history}>
         <Switch>
-          <Route path='/' exact component={CustomerPage} />
+          <Route exact path="/">
+            <Redirect to="/home/main" />
+          </Route>
+          <Route path='/home' component={CustomerPage} />
           <Route path='/Admin' component={AdminPage} />
           <Route path='/login' exact component={Login} />
           <Route path='/createCate' exact component={CreateCategories} />

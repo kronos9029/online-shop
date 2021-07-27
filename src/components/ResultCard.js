@@ -1,30 +1,21 @@
-import React, { PureComponent } from 'react'
-import './../assets/style/ProductCard.css'
-import axios from 'axios';
-import ReactPaginate from 'react-paginate';
+import React, { Component } from 'react'
+import ReactPaginate from 'react-paginate'
+import axios from 'axios'
 
-export class ProductCard extends PureComponent {
+export default class ResultCard extends Component {
 
     constructor(props) {
         super(props)
-
         this.state = {
             offset: 0,
             tableData: [],
             orgtableData: [],
             perPage: 3,
-            currentPage: 0
-            // modelIns: false
-
+            currentPage: 0,
+            searchValue: sessionStorage.getItem('searchValue')
         }
-
-
+        this.getData();
         this.handlePageClick = this.handlePageClick.bind(this);
-
-    }
-    modelIns = () => {
-        this.setState({ modelIns: !this.state.modelIns });
-
     }
 
     handlePageClick = (e) => {
@@ -51,25 +42,23 @@ export class ProductCard extends PureComponent {
 
     }
 
-    componentDidMount() {
-        this.getData();
-    }
     getData() {
-        // localStorage.getItem("auth")
-        axios
-            .get('http://localhost:8080/products/customer')
+        axios.post(`http://localhost:8080/products/customer/ByName?productName=${this.state.searchValue}`)
             .then(res => {
-                var tdata = res.data;
-                console.log('data-->' + JSON.stringify(tdata))
-                var slice = tdata.slice(this.state.offset,
-                    this.state.offset + this.state.perPage)
-                this.setState({
-                    pageCount: Math.ceil(tdata.length / this.state.perPage),
-                    orgtableData: tdata,
-                    tableData: slice
-                })
+                if (res.status === 200) {
+                    var tdata = res.data;
+                    console.log('data-->' + JSON.stringify(tdata))
+                    var slice = tdata.slice(this.state.offset,
+                        this.state.offset + this.state.perPage)
+                    this.setState({
+                        pageCount: Math.ceil(tdata.length / this.state.perPage),
+                        orgtableData: tdata,
+                        tableData: slice
+                    })
+                }
             });
     }
+
 
     render() {
         return (
@@ -128,6 +117,4 @@ export class ProductCard extends PureComponent {
         )
     }
 }
-
-export default ProductCard
 

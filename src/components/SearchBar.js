@@ -21,7 +21,7 @@ export default function SearchBar() {
     return (
             <div className="wrap">
             <div className="search">
-                <input type="text" name="searchValue"  className="searchTerm" onChange={(e) => setSearchValue(e.target.value)} placeholder="What are you looking for?"/>
+                <input type="text" name="searchValue"  className="searchTerm" onChange={(e) => setSearchValue(e.target.value)} placeholder="What are you looking for?" />
                 <button onClick={(e) => {handleSubmit(e)}}  type="submit" className="searchButton">
                     <i className="fa fa-search"></i>
                 </button>

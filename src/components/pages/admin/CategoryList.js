@@ -93,56 +93,61 @@ export default class CategoryList extends Component {
   }
 
   render() {
-      return (
-        <>
-          <div className="table-users">
-            <div className="header">Products</div>
+    return (
+      <>
+        <div className="table-users">
+          <div className="header">Products</div>
 
-            <table cellSpacing="0">
-              <thead>
-                <tr>
-                  <th>Category Name</th>
-                  <th>Category Description</th>
-                  <th>Delete</th>
-                  <th>Edit</th>
-                </tr>
-              </thead>
+          <table cellSpacing="0">
+            <thead>
+              <tr>
+                <th>Category Name</th>
+                <th>Category Description</th>
+                <th>Delete</th>
+                <th>Edit</th>
+              </tr>
+            </thead>
 
-              <tbody>
-                {
-                  this.state.tableData.map((item) => (
-                    <tr key={item.cateId}>
-                      <td>{item.cateName}</td>
-                      <td>{item.cateDescription}</td>
-                      <td>
-                        <Link to='/Admin/adminCate'>
-                          <img onClick={this.delCategory.bind(this, item)} className="icon" src={deletePic} alt="delete"></img>
-                        </Link>
-                      </td>
-                      <td>
-                        <img onClick={(e) => { (this.handleClickUpdateCate(e, item.cateId)) }} className="icon" src={editPic} alt="edit"></img>
-                      </td>
-                    </tr>
-                  ))
-                }
-              </tbody>
-            </table>
-          </div>
-          <div>
-            <ReactPaginate
-              previousLabel={"prev"}
-              nextLabel={"next"}
-              breakLabel={"..."}
-              breakClassName={"break-me"}
-              pageCount={this.state.pageCount}
-              marginPagesDisplayed={2}
-              pageRangeDisplayed={5}
-              onPageChange={this.handlePageClick}
-              containerClassName={"pagination"}
-              subContainerClassName={"pages pagination"}
-              activeClassName={"active"} />
-          </div>
-        </>
-      )
+            <tbody>
+              {
+                this.state.tableData.map((item) => (
+                  <tr key={item.cateId}>
+                    <td>{item.cateName}</td>
+                    <td>{item.cateDescription}</td>
+                    {
+                      item.cateName === "none" ? null :
+                        <>
+                          <td>
+                            <Link to='/Admin/adminCate'>
+                              <img onClick={this.delCategory.bind(this, item)} className="icon" src={deletePic} alt="delete"></img>
+                            </Link>
+                          </td>
+                          <td>
+                            <img onClick={(e) => { (this.handleClickUpdateCate(e, item.cateId)) }} className="icon" src={editPic} alt="edit"></img>
+                          </td>
+                        </>
+                    }
+                  </tr>
+                ))
+              }
+            </tbody>
+          </table>
+        </div>
+        <div>
+          <ReactPaginate
+            previousLabel={"prev"}
+            nextLabel={"next"}
+            breakLabel={"..."}
+            breakClassName={"break-me"}
+            pageCount={this.state.pageCount}
+            marginPagesDisplayed={2}
+            pageRangeDisplayed={5}
+            onPageChange={this.handlePageClick}
+            containerClassName={"pagination"}
+            subContainerClassName={"pages pagination"}
+            activeClassName={"active"} />
+        </div>
+      </>
+    )
   }
 }

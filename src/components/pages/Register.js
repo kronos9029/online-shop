@@ -63,14 +63,12 @@ export default function Register(){
       if (Object.keys(msg).length > 0) return false;
       return true;
     }
-    async function handleSubmit(event) {
-  
-      event.preventDefault();
-      const isValid = validateAll();
-        const authortication = await register();
-        console.log(authortication.data);
     
-  
+    async function handleSubmit(event) {
+      event.preventDefault();
+      validateAll();
+      const authortication = await register();
+      console.log(authortication.data);
     }
     
         return (

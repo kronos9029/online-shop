@@ -1,7 +1,7 @@
 import AdminSearchBar from './admin/AdminSearchBar';
 import ProductList from './admin/ProductList';
 import Navbar from '../Navbar';
-import { BrowserRouter as Router, Switch, Route } from 'react-router-dom';
+import { BrowserRouter as Router, Switch, Route, Redirect } from 'react-router-dom';
 import CategoryList from './admin/CategoryList';
 import ResultList from './admin/ResultList';
 import CreateProduct from './admin/CreateProduct';
@@ -31,7 +31,8 @@ function AdminPage() {
     );
   } else {
     return (
-      <div>FUCK OFF</div>
+      // <div><img src="https://media4.giphy.com/media/8abAbOrQ9rvLG/giphy.gif?cid=ecf05e47756235qk977sbdv687mp2n4vfo7ozowhgx9xbv7o&rid=giphy.gif&ct=g"></img></div>
+      <Redirect to="/home/main" />
     );
   }
 

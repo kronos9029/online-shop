@@ -46,9 +46,7 @@ export default function CustomerNav() {
                 <li><a href='/#' data-item='Profile'>Profile</a></li>
             }
             {check === "NOT_LOGGED_IN" ?
-              <Link to='/login'>
-                <li><a href='/#' data-item='Login'>Login</a></li>
-              </Link>
+                <li><a href='/login' data-item='Login'>Login</a></li>
               :
               <li><a href="/#" onClick={(e) => { Logout(e) }} data-item='Logout'>Logout</a></li>
             }

@@ -44,6 +44,7 @@ export default class UpdateProduct extends Component {
     }
 
     getproduct(productId) {
+        
         axios
             .get(`http://localhost:8080/products/${productId}`)
             .then(res => {

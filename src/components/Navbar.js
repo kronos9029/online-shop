@@ -5,7 +5,7 @@ import { Link, useHistory } from "react-router-dom";
 export default function CustomerNav() {
 
     const history = useHistory();
-
+    const Username = sessionStorage.getItem('username')
     const token = localStorage.getItem("auth");
     let check;
     if (!token) {
@@ -48,7 +48,8 @@ export default function CustomerNav() {
 
     return (
         <div>
-            <p className="nav-bar" data-item=''>Admin  page</p>
+            <p className="nav-bar" data-item=''>Admin page</p>
+            <h4>Welcome, {Username} !!</h4>
             <section className="nav-body" >
                 <nav>
                     <ul className="menuItems">

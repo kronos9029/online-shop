@@ -1,5 +1,6 @@
 import React, { Component } from 'react'
 import axios from 'axios';
+import validator from './../../../services/Validator';
 import '../../../assets/style/CreateCategories.css';
 
 export default class CreateCategories extends Component {
@@ -13,7 +14,23 @@ export default class CreateCategories extends Component {
         this.state = {
             cateName: '',
             cateDescription: '',
+            errors: {},
         }
+        const rules = [
+            {
+              field: 'cateName',
+              method: 'isEmpty',
+              validWhen: false,
+              message: 'This field is required.',
+            },
+            {
+              field: 'cateDescription',
+              method: 'isEmpty',
+              validWhen: false,
+              message: 'This field is required.',
+            },
+          ];
+          this.validator = new validator(rules);
     }
 
     onChangeDescription(e) {
@@ -30,6 +47,9 @@ export default class CreateCategories extends Component {
     }
 
     createCategory() {
+        this.setState({
+            errors: this.validator.validate(this.state),
+        });
         var category = {
             cateName: this.state.cateName,
             cateDescription: this.state.cateDescription
@@ -50,6 +70,7 @@ export default class CreateCategories extends Component {
     }
 
     render() {
+        const {errors} = this.state;
         return (
             <div className="container">
                 <div className="row">
@@ -62,12 +83,14 @@ export default class CreateCategories extends Component {
                         <div className="styled-input wide">
                             <input className="cateName" name="cateName" defaultValue={this.state.cateName} type="text" onChange={this.onChangeName} required/>
                             <label>Category Name</label>
+                            {errors.cateName && <div className="validation" style={{display: 'block', color: "red"}}>{errors.cateName}</div>}
                         </div>
                     </div>
                     <div className="col-xs-12">
                         <div className="styled-input wide">
                             <textarea name="cateDescription" defaultValue={this.state.cateDescription} onChange={this.onChangeDescription} required></textarea>
                             <label>Category Description</label>
+                            {errors.cateDescription && <div className="validation" style={{display: 'block', color: "red"}}>{errors.cateDescription }</div>}
                         </div>
                     </div>
                     <div className="col-xs-12">

@@ -46,6 +46,7 @@ export default function Login() {
         try {
             const authortication = await access();
             sessionStorage.setItem('roleCheck', authortication.data.roles[0])
+            sessionStorage.setItem('username', authortication.data.username)
             if (authortication.data.roles[0] === "ROLE_ADMIN") {
                 history.push("/Admin/adminProduct");
             }

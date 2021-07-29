@@ -25,7 +25,7 @@ export default class CreateProduct extends Component {
             cateId: '',
             errors: {},
         }
-        const requiredWith = (value, field, state) => (!state[field] && !value) || !!value;
+        // const requiredWith = (value, field, state) => (!state[field] && !value) || !!value;
         const rules = [
             {
               field: 'productName',
